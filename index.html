@@ -5,7 +5,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
 		<meta name="description" content="Personal portfolio of Kylie P. Basilisco — Grade 11 TVL-ICT student, aspiring web developer, and multimedia designer." />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/main.css" media="print" onload="this.media='all'" />
+		<noscript><link rel="stylesheet" href="assets/css/main.css" /></noscript>
 		<script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 		<style>
 			/* Soft Pastel Pink & Rose Palette (High-Contrast & Accessible) */
@@ -18,6 +19,17 @@
 				--rose-dark-text: #5c1a33;
 			}
 
+			/* Instant Above-the-Fold Base Styles (Prevents FOUC while main.css loads async) */
+			*, *:before, *:after {
+				box-sizing: border-box;
+			}
+			body {
+				margin: 0;
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+				color: #777;
+				line-height: 1.75em;
+			}
+
 			/* Page & Wrapper Soft Pastel Pink Background */
 			body,
 			#wrapper,
@@ -27,6 +39,11 @@
 			}
 			#main > section {
 				border-top-color: var(--pastel-border) !important;
+			}
+			.container {
+				margin: 0 auto;
+				max-width: calc(100% - 4.5em);
+				width: 45em;
 			}
 
 			/* Instant LCP Hero Banner (Bypasses JS background-image delay) */
@@ -47,6 +64,9 @@
 			@media screen and (max-width: 736px) {
 				.banner-hero {
 					height: 13em;
+				}
+				.container {
+					max-width: calc(100% - 3em);
 				}
 			}
 
