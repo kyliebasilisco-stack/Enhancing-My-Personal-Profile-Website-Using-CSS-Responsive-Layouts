@@ -28,15 +28,26 @@
 			#main > section {
 				border-top-color: var(--pastel-border) !important;
 			}
-			.image.main {
+
+			/* Instant LCP Hero Banner (Bypasses JS background-image delay) */
+			.banner-hero {
 				display: block;
 				width: 100%;
+				height: 20em;
 				overflow: hidden;
+				margin: 0;
 			}
-			.image.main img {
+			.banner-hero img {
 				width: 100%;
-				height: auto;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
 				display: block;
+			}
+			@media screen and (max-width: 736px) {
+				.banner-hero {
+					height: 13em;
+				}
 			}
 
 			/* Sidebar Pastel Pink Background & High-Contrast Dark Rose Text */
@@ -296,7 +307,7 @@
 			}
 		</style>
 	</head>
-	<body class="is-preload">
+	<body>
 
 		<!-- Header -->
 			<section id="header">
@@ -330,7 +341,7 @@
 
 						<!-- One -->
 							<section id="one">
-								<div class="image main" data-position="center">
+								<div class="banner-hero">
 									<img src="banner.jpg" alt="Personal webpage banner" width="1200" height="400" fetchpriority="high" decoding="sync" />
 								</div>
 								<div class="container">
@@ -350,9 +361,10 @@
 									<p>The map below shows my selected location using Google Maps iframe.</p>
 									<div style="width: 100%; max-width: 100%; margin-bottom: 2em; border-radius: 6px; overflow: hidden; display: block;">
 										<iframe 
-											src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d490.7244333745597!2d123.96414564777837!3d10.278057509606688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99b9301927bff%3A0x67caffee7146707f!2sMasulog%20Lapulapu%20city!5e0!3m2!1sen!2sph!4v1786317054193!5m2!1sen!2sph"
+											data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d490.7244333745597!2d123.96414564777837!3d10.278057509606688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99b9301927bff%3A0x67caffee7146707f!2sMasulog%20Lapulapu%20city!5e0!3m2!1sen!2sph!4v1786317054193!5m2!1sen!2sph"
+											id="location-map"
 											title="My Location Map - Masulog, Lapu-Lapu City"
-											style="border: 0; width: 100% !important; min-width: 100%; height: 350px; display: block;"
+											style="border: 0; width: 100% !important; min-width: 100%; height: 350px; display: block; background: #f8c8dc;"
 											allowfullscreen=""
 											loading="lazy"
 											referrerpolicy="strict-origin-when-cross-origin">
@@ -577,6 +589,18 @@
 				window.addEventListener("DOMContentLoaded", () => {
 					const toggle = document.querySelector("#titleBar .toggle");
 					if (toggle) toggle.setAttribute("aria-label", "Toggle navigation menu");
+					const map = document.getElementById("location-map");
+					if (map && "IntersectionObserver" in window) {
+						const io = new IntersectionObserver((entries) => {
+							if (entries[0].isIntersecting) {
+								map.src = map.dataset.src;
+								io.disconnect();
+							}
+						}, { rootMargin: "200px" });
+						io.observe(map);
+					} else if (map) {
+						map.src = map.dataset.src;
+					}
 				});
 			</script>
 
