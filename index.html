@@ -1,0 +1,566 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Kylie P. Basilisco | Personal Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+		<meta name="description" content="Personal portfolio of Kylie P. Basilisco — Grade 11 TVL-ICT student, aspiring web developer, and multimedia designer." />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+		<style>
+			/* Soft Pastel Pink & Rose Palette (High-Contrast & Accessible) */
+			:root {
+				--pastel-bg: #fff5f8;
+				--pastel-sidebar: #f8c8dc;
+				--pastel-border: #f2b5ce;
+				--rose-accent: #c94c7c;
+				--rose-hover: #a83863;
+				--rose-dark-text: #5c1a33;
+			}
+
+			/* Page & Wrapper Soft Pastel Pink Background */
+			body,
+			#wrapper,
+			#main,
+			#main > section {
+				background-color: var(--pastel-bg) !important;
+			}
+			#main > section {
+				border-top-color: var(--pastel-border) !important;
+			}
+
+			/* Sidebar Pastel Pink Background & High-Contrast Dark Rose Text */
+			#header {
+				background-color: var(--pastel-sidebar) !important;
+				color: var(--rose-dark-text) !important;
+				border-left: 1px solid var(--pastel-border) !important;
+			}
+			#header > header h1 a {
+				color: var(--rose-dark-text) !important;
+			}
+			#header > header p {
+				color: #7a2948 !important;
+			}
+
+			/* Sidebar Navigation Dividers & Smooth Hover Effect */
+			#header > nav ul li {
+				border-top: solid 2px #f2a6c4 !important;
+			}
+			#header > nav ul li:first-child {
+				border-top: 0 !important;
+			}
+			#header > nav ul li a {
+				border-top: 0 !important;
+				color: var(--rose-dark-text) !important;
+				font-weight: 600;
+				transition: background-color 0.25s ease, color 0.25s ease, padding-left 0.25s ease !important;
+			}
+			#header > nav ul li a:hover {
+				background-color: rgba(255, 255, 255, 0.55) !important;
+				color: var(--rose-accent) !important;
+			}
+			#header > nav ul li a.active {
+				background-color: #ffffff !important;
+				color: var(--rose-accent) !important;
+				font-weight: 700;
+			}
+			#header > nav ul li a.active:hover {
+				background-color: #ffffff !important;
+			}
+
+			#header > footer .icons li a {
+				color: #7a2948 !important;
+				transition: transform 0.25s ease, color 0.25s ease !important;
+			}
+			#header > footer .icons li a:hover {
+				color: var(--rose-dark-text) !important;
+				transform: translateY(-3px) scale(1.15) !important;
+			}
+
+			/* Fix Circular Avatar Aspect Ratio & Smooth Hover Effect */
+			#header > header .image.avatar {
+				width: 8em !important;
+				height: 8em !important;
+				border-radius: 100% !important;
+				overflow: hidden !important;
+				margin: 0 auto 1.5em auto !important;
+				display: block !important;
+				border: 3px solid #ffffff !important;
+				box-shadow: 0 4px 12px rgba(92, 26, 51, 0.12) !important;
+				transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease !important;
+				cursor: pointer;
+			}
+			#header > header .image.avatar:hover {
+				transform: translateY(-5px) scale(1.06) !important;
+				border-color: var(--rose-accent) !important;
+				box-shadow: 0 10px 24px rgba(201, 76, 124, 0.35) !important;
+			}
+			#header > header .image.avatar img {
+				width: 100% !important;
+				height: 100% !important;
+				object-fit: cover !important;
+				object-position: center !important;
+				border-radius: 100% !important;
+				transition: transform 0.35s ease !important;
+			}
+			#header > header .image.avatar:hover img {
+				transform: scale(1.08) !important;
+			}
+
+			/* Mobile Title Bar */
+			#titleBar {
+				background-color: var(--pastel-sidebar) !important;
+			}
+			#titleBar .title,
+			#titleBar .title a {
+				color: var(--rose-dark-text) !important;
+			}
+			#titleBar .toggle:before {
+				background-color: var(--rose-accent) !important;
+			}
+
+			/* Headings, Links, Icons, Accents & Buttons */
+			#main > section > .container > header h2,
+			#main h3,
+			#main h4 {
+				color: var(--rose-dark-text) !important;
+			}
+			a {
+				color: var(--rose-accent);
+			}
+			a:hover {
+				color: var(--rose-hover) !important;
+				border-bottom-color: var(--rose-hover) !important;
+			}
+
+			/* Hobbies & Interests Icons with Smooth Hover Effect */
+			ul.feature-icons li {
+				transition: transform 0.25s ease, color 0.25s ease !important;
+				cursor: default;
+			}
+			ul.feature-icons li:before {
+				background-color: var(--pastel-sidebar) !important;
+				color: var(--rose-dark-text) !important;
+				transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
+			}
+			ul.feature-icons li:hover {
+				color: var(--rose-dark-text) !important;
+				transform: translateX(4px) !important;
+			}
+			ul.feature-icons li:hover:before {
+				background-color: var(--rose-accent) !important;
+				color: #ffffff !important;
+				transform: scale(1.12) rotate(-6deg) !important;
+				box-shadow: 0 6px 14px rgba(201, 76, 124, 0.3) !important;
+			}
+
+			/* Blockquote Motto Card with Smooth Hover Effect */
+			blockquote {
+				border-left: solid 4px var(--rose-accent) !important;
+				background-color: #ffffff;
+				padding: 1em 1.5em;
+				border-radius: 0 8px 8px 0;
+				box-shadow: 0 2px 8px rgba(92, 26, 51, 0.06);
+				transition: transform 0.3s ease, background-color 0.3s ease, border-left-width 0.3s ease, box-shadow 0.3s ease, color 0.3s ease !important;
+				cursor: default;
+			}
+			blockquote:hover {
+				transform: translateY(-3px) translateX(4px) !important;
+				background-color: #ffeaf2 !important;
+				border-left-width: 8px !important;
+				color: var(--rose-dark-text) !important;
+				box-shadow: 0 8px 20px rgba(201, 76, 124, 0.2) !important;
+			}
+
+			/* Contact Form Inputs, Options & Buttons with Smooth Hover Effects */
+			input[type="text"],
+			input[type="email"],
+			select,
+			textarea {
+				background-color: #ffffff !important;
+				border-color: var(--pastel-border) !important;
+				transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease !important;
+			}
+			input[type="text"]:hover,
+			input[type="email"]:hover,
+			select:hover,
+			textarea:hover {
+				border-color: var(--rose-accent) !important;
+				background-color: #fffafd !important;
+				transform: translateY(-2px) !important;
+				box-shadow: 0 6px 16px rgba(201, 76, 124, 0.16) !important;
+			}
+			input[type="text"]:focus,
+			input[type="email"]:focus,
+			select:focus,
+			textarea:focus {
+				border-color: var(--rose-accent) !important;
+				box-shadow: 0 0 0 2px rgba(201, 76, 124, 0.25) !important;
+				transform: translateY(-2px) !important;
+			}
+
+			/* Checkboxes & Radio Buttons Hover */
+			input[type="checkbox"] + label,
+			input[type="radio"] + label {
+				transition: color 0.2s ease, transform 0.2s ease !important;
+				cursor: pointer;
+			}
+			input[type="checkbox"] + label:before,
+			input[type="radio"] + label:before {
+				background-color: #ffffff !important;
+				border-color: var(--pastel-border) !important;
+				transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease !important;
+			}
+			input[type="checkbox"] + label:hover,
+			input[type="radio"] + label:hover {
+				color: var(--rose-accent) !important;
+			}
+			input[type="checkbox"] + label:hover:before,
+			input[type="radio"] + label:hover:before {
+				border-color: var(--rose-accent) !important;
+				box-shadow: 0 0 0 3px rgba(201, 76, 124, 0.15) !important;
+				transform: scale(1.08) !important;
+			}
+			input[type="checkbox"]:checked + label:before,
+			input[type="radio"]:checked + label:before {
+				background-color: var(--rose-accent) !important;
+				border-color: var(--rose-accent) !important;
+				color: #ffffff !important;
+			}
+
+			/* Primary & Secondary Form Buttons Hover */
+			input[type="submit"],
+			input[type="reset"],
+			input[type="button"],
+			button,
+			.button {
+				transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease !important;
+			}
+			input[type="submit"]:hover,
+			input[type="reset"]:hover,
+			input[type="button"]:hover,
+			button:hover,
+			.button:hover {
+				transform: translateY(-2px) !important;
+				box-shadow: 0 6px 16px rgba(92, 26, 51, 0.2) !important;
+			}
+			input[type="submit"].primary,
+			input[type="reset"].primary,
+			input[type="button"].primary,
+			button.primary,
+			.button.primary {
+				background-color: var(--rose-accent) !important;
+				color: #ffffff !important;
+			}
+			input[type="submit"].primary:hover,
+			input[type="reset"].primary:hover,
+			input[type="button"].primary:hover,
+			button.primary:hover,
+			.button.primary:hover {
+				background-color: var(--rose-hover) !important;
+				box-shadow: 0 8px 18px rgba(201, 76, 124, 0.35) !important;
+			}
+			/* Soft Pink Style for Clear Form Button */
+			input[type="reset"] {
+				background-color: var(--pastel-sidebar) !important;
+				color: var(--rose-dark-text) !important;
+			}
+			input[type="reset"]:hover {
+				background-color: #f2b5ce !important;
+				color: var(--rose-dark-text) !important;
+			}
+
+			label,
+			p strong {
+				color: var(--rose-dark-text) !important;
+			}
+
+			/* Footer */
+			#footer {
+				background-color: var(--pastel-sidebar) !important;
+				color: var(--rose-dark-text) !important;
+			}
+			#footer .copyright li,
+			#footer .copyright a {
+				color: var(--rose-dark-text) !important;
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<section id="header">
+				<header>
+					<span class="image avatar"><img src="profile.jpg" alt="Portrait of Kylie P. Basilisco" /></span>
+					<h1 id="logo"><a href="#one">Kylie P. Basilisco</a></h1>
+					<p>Grade 11 - Jasper/Onyx (TVL-ICT)<br />
+					Aspiring Web Developer &amp; Multimedia Designer</p>
+				</header>
+				<nav id="nav">
+					<ul>
+						<li><a href="#one" class="active">About Me</a></li>
+						<li><a href="#two">Hobbies &amp; Favorites</a></li>
+						<li><a href="#three">My Goals</a></li>
+						<li><a href="#four">Get In Touch</a></li>
+					</ul>
+				</nav>
+				<footer>
+					<ul class="icons">
+						<li><a href="https://facebook.com/kylie.basilisco.7" class="icon brands fa-facebook-f" target="_blank" rel="noopener" aria-label="Facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#four" class="icon solid fa-envelope" aria-label="Contact Form"><span class="label">Email</span></a></li>
+					</ul>
+				</footer>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- One -->
+							<section id="one">
+								<div class="image main" data-position="center">
+									<img src="banner.jpg" alt="Personal webpage banner" />
+								</div>
+								<div class="container">
+									<header class="major">
+										<h2>Welcome to my Personal Webpage!</h2>
+										<p>Welcome to my personal website. This website contains information all about me!</p>
+									</header>
+									<p>Hi! I'm <strong>Kylie P. Basilisco</strong>, a <strong>Grade 11 - Jasper/Onyx</strong> student in the <strong>TVL-ICT</strong> strand, born on January 20. I am friendly, determined, and always willing to learn and improve. I live in Basak, Lapu-Lapu City with my pet cat, 2 pet dogs, and younger step-brother. Usually in my free time, I am busy doing household chores and doing my hobbies.</p>
+									
+									<ul class="actions">
+										<li><a href="https://facebook.com/kylie.basilisco.7" class="button primary icon brands fa-facebook-f" target="_blank" rel="noopener">Basilisco Kylie</a></li>
+									</ul>
+
+									<hr />
+
+									<h3>My Location</h3>
+									<p>The map below shows my selected location using Google Maps iframe.</p>
+									<div style="width: 100%; max-width: 100%; margin-bottom: 2em; border-radius: 6px; overflow: hidden; display: block;">
+										<iframe 
+											src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d490.7244333745597!2d123.96414564777837!3d10.278057509606688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99b9301927bff%3A0x67caffee7146707f!2sMasulog%20Lapulapu%20city!5e0!3m2!1sen!2sph!4v1786317054193!5m2!1sen!2sph"
+											title="My Location Map - Masulog, Lapu-Lapu City"
+											style="border: 0; width: 100% !important; min-width: 100%; height: 350px; display: block;"
+											allowfullscreen=""
+											loading="lazy"
+											referrerpolicy="strict-origin-when-cross-origin">
+										</iframe>
+									</div>
+								</div>
+							</section>
+
+						<!-- Two -->
+							<section id="two">
+								<div class="container">
+									<h3>My Hobbies &amp; Interests</h3>
+									<p>These are some of the hobbies and interests that describe me:</p>
+									
+									<ul class="feature-icons">
+										<li class="icon solid fa-gamepad">Playing Video Games</li>
+										<li class="icon solid fa-tv">Watching Movies, Anime &amp; K-dramas</li>
+										<li class="icon solid fa-music">Listening to Music</li>
+										<li class="icon solid fa-paint-brush">Drawing &amp; Multimedia Design</li>
+										<li class="icon solid fa-microphone">Singing &amp; Dancing</li>
+										<li class="icon solid fa-guitar">Playing the Ukulele &amp; Guitar</li>
+									</ul>
+
+									<hr />
+
+									<h4>My Favorite Things</h4>
+									<ul>
+										<li><strong>Top 5 Favorite Foods:</strong> Pizza, any spicy dishes, French Fries, Sisig, and Mango flavored cake.</li>
+										<li><strong>Favorite Colors:</strong> Pink, white, and brown—because these combinations are cute and simple.</li>
+										<li><strong>Favorite Drink:</strong> Coffee, which gives me energy and helps me stay focused when studying.</li>
+										<li><strong>Favorite Song:</strong> <em>Try Again</em> by Jaehyun and d.ear.</li>
+										<li><strong>Favorite Math Expression:</strong> a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>, because it is simple, useful, and shows the relationship between the sides of a right triangle.</li>
+									</ul>
+								</div>
+							</section>
+
+						<!-- Three -->
+							<section id="three">
+								<div class="container">
+									<h3>My Goals</h3>
+									<p>Here are my educational goals, future aspirations, and a little more about what drives me:</p>
+									
+									<ul>
+										<li><strong>Educational Goals:</strong> Do well in school, become more confident in learning, graduate from Senior High School with good grades, and improve my programming skills in HTML, CSS, and JavaScript to build useful websites.</li>
+										<li><strong>Dream Career:</strong> Become a <strong>web developer</strong> or <strong>multimedia designer</strong>, creating engaging and user-friendly websites and digital content.</li>
+										<li><strong>Future Roadmap:</strong> Continue my education in college and find a successful career that matches my skills, interests, and future goals.</li>
+										<li><strong>Fun Fact:</strong> I love challenging myself to learn new things every day—I even used to make YouTube gaming videos and got my channel monetized when I was just 13 years old!</li>
+									</ul>
+
+									<blockquote>"It is always better to be late than never." — <em>My Motto in Life</em></blockquote>
+								</div>
+							</section>
+
+						<!-- Four -->
+							<section id="four">
+								<div class="container">
+									<h3>Get In Touch</h3>
+									<p>Please fill out the form below to contact me:</p>
+									<form id="f" method="post" onsubmit="sendEmail(event)">
+										<div class="row gtr-uniform">
+											<div class="col-6 col-12-xsmall">
+												<label for="name">Name:</label>
+												<input type="text" name="name" id="name" placeholder="Your Name" required />
+											</div>
+											<div class="col-6 col-12-xsmall">
+												<label for="email">Email Address:</label>
+												<input type="email" name="email" id="email" placeholder="Your Email" required />
+											</div>
+
+											<div class="col-4 col-12-xsmall">
+												<label for="sexuality">Sexuality:</label>
+												<select id="sexuality" name="sexuality">
+													<option value="straight">Straight</option>
+													<option value="gay">Gay</option>
+													<option value="lesbian">Lesbian</option>
+													<option value="bisexual">Bisexual</option>
+													<option value="prefer-not-to-say">Prefer not to say</option>
+													<option value="other">Other</option>
+												</select>
+											</div>
+											<div class="col-4 col-12-xsmall">
+												<label for="grade-strand">Grade Level &amp; Strand:</label>
+												<select id="grade-strand" name="grade level & strand">
+													<option value="ASHH CLUSTER 11">ASHH CLUSTER 11</option>
+													<option value="HUMMS 12">HUMMS 12</option>
+													<option value="STEM CLUSTER 11">STEM CLUSTER 11</option>
+													<option value="STEM 12">STEM 12</option>
+													<option value="BNE CLUSTER 11">BNE CLUSTER 11</option>
+													<option value="ABM 12">ABM 12</option>
+													<option value="GAS CLUSTER 11">GAS CLUSTER 11</option>
+													<option value="GAS 12">GAS 12</option>
+													<option value="ICT CLUSTER 11">ICT CLUSTER 11</option>
+													<option value="ICT 12">ICT 12</option>
+												</select>
+											</div>
+											<div class="col-4 col-12-xsmall">
+												<label for="purpose">Purpose of Visit:</label>
+												<select id="purpose" name="purpose">
+													<option value="General Inquiry">General Inquiry</option>
+													<option value="Feedback">Feedback</option>
+													<option value="Collaboration">Collaboration</option>
+													<option value="School Project">School Project</option>
+													<option value="Others">Others</option>
+												</select>
+											</div>
+
+											<div class="col-12">
+												<p style="margin-bottom: 0.5em;"><strong>Gender:</strong></p>
+												<input type="radio" id="gender-male" name="gender" value="Male" />
+												<label for="gender-male">Male</label>
+												<input type="radio" id="gender-female" name="gender" value="Female" />
+												<label for="gender-female">Female</label>
+											</div>
+
+											<div class="col-12">
+												<p style="margin-bottom: 0.5em;"><strong>Interests:</strong></p>
+												<div class="row gtr-25">
+													<div class="col-3 col-6-small">
+														<input type="checkbox" id="int-arts" name="interest" value="Arts" />
+														<label for="int-arts">Arts</label>
+													</div>
+													<div class="col-3 col-6-small">
+														<input type="checkbox" id="int-drawing" name="interest" value="Drawing" />
+														<label for="int-drawing">Drawing</label>
+													</div>
+													<div class="col-3 col-6-small">
+														<input type="checkbox" id="int-dancing" name="interest" value="Dancing" />
+														<label for="int-dancing">Dancing</label>
+													</div>
+													<div class="col-3 col-6-small">
+														<input type="checkbox" id="int-singing" name="interest" value="Singing" />
+														<label for="int-singing">Singing</label>
+													</div>
+													<div class="col-3 col-6-small">
+														<input type="checkbox" id="int-gaming" name="interest" value="Gaming" />
+														<label for="int-gaming">Gaming</label>
+													</div>
+													<div class="col-3 col-6-small">
+														<input type="checkbox" id="int-sports" name="interest" value="Sports" />
+														<label for="int-sports">Sports</label>
+													</div>
+													<div class="col-3 col-6-small">
+														<input type="checkbox" id="int-cooking" name="interest" value="Cooking" />
+														<label for="int-cooking">Cooking</label>
+													</div>
+													<div class="col-3 col-6-small">
+														<input type="checkbox" id="int-tech" name="interest" value="Technology" />
+														<label for="int-tech">Technology</label>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-12">
+												<label for="message">Message:</label>
+												<textarea name="message" id="message" placeholder="Write your message here..." rows="5" required></textarea>
+											</div>
+
+											<div class="col-12">
+												<p style="margin-bottom: 0.5em;"><strong>Before you go, am I cute?</strong></p>
+												<input type="radio" id="cute-yes" name="cute" value="yes" />
+												<label for="cute-yes">Yes</label>
+												<input type="radio" id="cute-absolutely" name="cute" value="absolutely" />
+												<label for="cute-absolutely">Absolutely</label>
+											</div>
+
+											<input type="hidden" name="title" value="Contact Me Form" />
+											<input type="hidden" id="t" name="time" />
+
+											<div class="col-12">
+												<p id="s" role="status" aria-live="polite" style="font-weight: bold; margin-bottom: 0.75em;"></p>
+												<ul class="actions">
+													<li><input type="submit" class="primary" value="Send Message" /></li>
+													<li><input type="reset" value="Clear Form" /></li>
+												</ul>
+											</div>
+										</div>
+										<script>
+											emailjs.init({publicKey:"KUK4_2LJAC2j8W4Xo"});
+
+											sendEmail = e => (
+												e.preventDefault(),
+												t.value = Date(),
+												emailjs.sendForm("service_w8ei0bj","template_0ud8ufj",f)
+												.then(() => {
+													s.innerHTML = "<span style='color:#1b6e32;'>Successfully Sent!</span>";
+													f.reset();
+												})
+												.catch(() => {
+													s.innerHTML = "<span style='color:#b00020;'>Failed!</span>";
+												})
+											);
+										</script>
+									</form>
+								</div>
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="container">
+							<ul class="copyright">
+								<li>&copy; 2026 Kylie P. Basilisco. All rights reserved.</li>
+								<li>Design: <a href="http://html5up.net" rel="noopener">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
