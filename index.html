@@ -5,8 +5,9 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
 		<meta name="description" content="Personal portfolio of Kylie P. Basilisco — Grade 11 TVL-ICT student, aspiring web developer, and multimedia designer." />
+		<link rel="preload" as="image" href="banner.jpg" fetchpriority="high" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+		<script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 		<style>
 			/* Soft Pastel Pink & Rose Palette (High-Contrast & Accessible) */
 			:root {
@@ -291,7 +292,7 @@
 		<!-- Header -->
 			<section id="header">
 				<header>
-					<span class="image avatar"><img src="profile.jpg" alt="Portrait of Kylie P. Basilisco" /></span>
+					<span class="image avatar"><img src="profile.jpg" alt="Portrait of Kylie P. Basilisco" width="128" height="128" decoding="async" /></span>
 					<h1 id="logo"><a href="#one">Kylie P. Basilisco</a></h1>
 					<p>Grade 11 - Jasper/Onyx (TVL-ICT)<br />
 					Aspiring Web Developer &amp; Multimedia Designer</p>
@@ -321,7 +322,7 @@
 						<!-- One -->
 							<section id="one">
 								<div class="image main" data-position="center">
-									<img src="banner.jpg" alt="Personal webpage banner" />
+									<img src="banner.jpg" alt="Personal webpage banner" width="1200" height="400" fetchpriority="high" decoding="sync" />
 								</div>
 								<div class="container">
 									<header class="major">
@@ -520,7 +521,9 @@
 											</div>
 										</div>
 										<script>
-											emailjs.init({publicKey:"KUK4_2LJAC2j8W4Xo"});
+											window.addEventListener("DOMContentLoaded", () => {
+												emailjs.init({publicKey:"KUK4_2LJAC2j8W4Xo"});
+											});
 
 											sendEmail = e => (
 												e.preventDefault(),
@@ -554,13 +557,19 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script defer src="assets/js/jquery.min.js"></script>
+			<script defer src="assets/js/jquery.scrollex.min.js"></script>
+			<script defer src="assets/js/jquery.scrolly.min.js"></script>
+			<script defer src="assets/js/browser.min.js"></script>
+			<script defer src="assets/js/breakpoints.min.js"></script>
+			<script defer src="assets/js/util.js"></script>
+			<script defer src="assets/js/main.js"></script>
+			<script>
+				window.addEventListener("DOMContentLoaded", () => {
+					const toggle = document.querySelector("#titleBar .toggle");
+					if (toggle) toggle.setAttribute("aria-label", "Toggle navigation menu");
+				});
+			</script>
 
 	</body>
 </html>
